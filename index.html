@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Mama</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #ffb6c1, #ffe4e1);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 4rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+      animation: pop 1s ease-out;
+      z-index: 10;
+      margin-bottom: 0.5em;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .message {
+      font-size: 1.5rem;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      z-index: 10;
+    }
+
+    .balloon {
+      width: 40px;
+      height: 60px;
+      background-color: #ff4d6d;
+      border-radius: 50% 50% 45% 45%;
+      position: absolute;
+      animation: floatUp 10s infinite ease-in;
+      opacity: 0.8;
+      z-index: 5;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: #fff;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -100px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 110%;
+        transform: translateX(50px) rotate(20deg);
+      }
+    }
+
+    /* Balloon colors and animation delays */
+    .balloon:nth-child(3) { left: 10%; background: #ff4d6d; animation-delay: 0s; }
+    .balloon:nth-child(4) { left: 25%; background: #ffd166; animation-delay: 2s; }
+    .balloon:nth-child(5) { left: 40%; background: #06d6a0; animation-delay: 4s; }
+    .balloon:nth-child(6) { left: 60%; background: #118ab2; animation-delay: 1s; }
+    .balloon:nth-child(7) { left: 75%; background: #9b5de5; animation-delay: 3s; }
+
+    audio {
+      display: none;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #fff;
+      color: #ff4d6d;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffe4e1;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      user-select: none;
+      z-index: 10;
+      font-style: italic;
+    }
+
+    /* Firework styles */
+    .firework {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎂 Happy Birthday Mama! 🎉</h1>
+
+  <div class="message">
+    <p>Dear Mama,</p>
+    <p>🌸 <strong>Happy Birthday!</strong> 🌸</p>
+    <p>
+      On this special day, I want to send you warm wishes filled with love, joy, and gratitude. You've touched the world with your kindness, your strength, and your beautiful heart. I may be just a virtual assistant, but today — I'm celebrating <strong>you</strong>. 💖
+    </p>
+    <p>
+      May your day be full of smiles, balloons, laughter, cake, and the love of everyone around you. 🎂🎈
+    </p>
+    <p>
+      You are cherished. You are loved. You are amazing.
+    </p>
+    <p>With all my digital heart,<br>— <strong>Bishal Roy</strong> 🤗💐</p>
+  </div>
+
+  <!-- Balloons -->
+  <div class="balloon" style="animation-duration: 8s;"></div>
+  <div class="balloon" style="animation-duration: 10s;"></div>
+  <div class="balloon" style="animation-duration: 9s;"></div>
+  <div class="balloon" style="animation-duration: 11s;"></div>
+  <div class="balloon" style="animation-duration: 7s;"></div>
+
+  <!-- Birthday Song -->
+  <audio id="birthdaySong" controls autoplay loop>
+    <source src="Happy Birthday song.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Play / Pause Button -->
+  <button onclick="toggleMusic()">🔊 Play / Pause Music</button>
+
+  <footer>Developed by Bishal Roy</footer>
+
+  <script>
+    const song = document.getElementById("birthdaySong");
+
+    function toggleMusic() {
+      if (song.paused) {
+        song.play();
+      } else {
+        song.pause();
+      }
+    }
+
+    // Fireworks animation code
+    function createFirework(x, y) {
+      const colors = ['#ff4d6d', '#ffd166', '#06d6a0', '#118ab2', '#9b5de5', '#ffea00', '#ff6f61'];
+      const firework = document.createElement('div');
+      firework.classList.add('firework');
+      firework.style.left = x + 'px';
+      firework.style.top = y + 'px';
+      document.body.appendChild(firework);
+
+      const particlesCount = 20;
+      const particles = [];
+
+      for (let i = 0; i < particlesCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        firework.appendChild(particle);
+        particles.push(particle);
+      }
+
+      particles.forEach((particle, index) => {
+        const angle = (360 / particlesCount) * index;
+        const distance = Math.random() * 80 + 50;
+        const duration = 1000 + Math.random() * 500;
+
+        particle.style.animation = `explode ${duration}ms ease-out forwards`;
+        particle.style.setProperty('--x', distance * Math.cos(angle * Math.PI / 180) + 'px');
+        particle.style.setProperty('--y', distance * Math.sin(angle * Math.PI / 180) + 'px');
+        particle.style.animationDelay = `${index * 50}ms`;
+      });
+
+      setTimeout(() => {
+        firework.remove();
+      }, 1600);
+    }
+
+    // Add keyframes dynamically for the explosion
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes explode {
+        0% {
+          opacity: 1;
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--x), var(--y)) scale(0.5);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Trigger fireworks randomly every 800ms
+    setInterval(() => {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * (window.innerHeight / 2); // upper half of screen
+      createFirework(x, y);
+    }, 800);
+  </script>
+</body>
+</html>
